@@ -6,3 +6,11 @@ Este es un juego de rol donde todos los jugadores tienen un papel. Los jugadores
 
 En el programa se lleva acabo este juego con ayuda de una estructura de clases con los distintos tipos de jugador (jugadores, doctores, investigadores, mafia) y les asigna sus propias características y acciones a cada rol.
 
+## Funcionalidad
+El programa es una versión limitada del juego ya que solo existen 4 roles distintos, cuando en el juego real existen muchos más. 
+
+## Consideraciones 
+Puede que existan maneras distintas/ más eficientes para obtener la información de los roles que se utilizará proximamente en el main. 
+Existen acciones de ciertos roles como el investigador que necesita saber si alguien tiene un rol bueno o malo, es decir, acceder a la información de los roles de todos los jugadores, que puede complicar el proyecto. 
+
+
