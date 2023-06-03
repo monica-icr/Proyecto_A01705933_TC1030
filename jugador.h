@@ -2,7 +2,7 @@
  * Proyecto Mafia clase Jugador
  * Mónica Isabel Casillas Rodríguez
  * A01705933
- * 26/05/2023
+ * 02/06/2023
  * version : 2
  * Esta clase define objetos de tipo jugador
  * Se incluyen las clases hererdadas
