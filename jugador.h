@@ -3,7 +3,7 @@
  * Mónica Isabel Casillas Rodríguez
  * A01705933
  * 26/05/2023
- * version : 1
+ * version : 2
  * Esta clase define objetos de tipo jugador
  * Se incluyen las clases hererdadas
  * Civil, Doctor, Investigador, Mafia. 
@@ -13,6 +13,7 @@
 #define JUGADOR_H_
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -22,12 +23,12 @@ class Jugador{
     protected: 
     // Atributos
     string nombre;
-    int estado; 
-    int bando; // 0 es bueno, 1 es malo
+    int estado;  
+    int bando; // 0 civil, 1 mafia
 
     public:
     // Constructor 
-    Jugador (): nombre(" "), estado(0){};
+    Jugador (): nombre(""), estado(0){};
     Jugador(string name);
     // Getters
     string getNombre(){ return nombre;}
@@ -38,7 +39,7 @@ class Jugador{
     void despertar();
     void morir();
     string votar(string name);
-    void ganar(int resultado);
+    virtual void ganar(int resultado){};
 };
 
 Jugador :: Jugador(string name){
@@ -60,7 +61,7 @@ void Jugador::dormir(){
 
 /**
  * despertar() cambia el estado del jugador a 0 que indica que está despierto 
- * y lo menciona
+ * y NO lo menciona
  * 
  * @param no recibe parámetros
  * @return no regresa ningún valor
@@ -68,7 +69,6 @@ void Jugador::dormir(){
 
 void Jugador::despertar(){
     estado = 0;
-    cout << "El jugador " << nombre << " está despierto." << endl;
 }
 
 /**
