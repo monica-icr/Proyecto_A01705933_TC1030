@@ -2,8 +2,8 @@
  * Proyecto Mafia clase Jugador
  * Mónica Isabel Casillas Rodríguez
  * A01705933
- * 02/06/2023
- * version : 2
+ * 09/06/2023
+ * version : 3
  * Esta clase define objetos de tipo jugador
  * Se incluyen las clases hererdadas
  * Civil, Doctor, Investigador, Mafia. 
@@ -39,7 +39,7 @@ class Jugador{
     void despertar();
     void morir();
     string votar(string name);
-    virtual void ganar(int resultado){};
+    virtual void ganar(int resultado) = 0; // La clase se vuelve abstracta.
 };
 
 Jugador :: Jugador(string name){
