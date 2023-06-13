@@ -2,8 +2,8 @@
  * Proyecto Mafia clase Partida
  * Mónica Isabel Casillas Rodríguez
  * A01705933
- * 02/06/2023
- * version : 2
+ * 12/06/2023
+ * version : 4
  * Esta clase define objetos de tipo partida
  * 
 */
