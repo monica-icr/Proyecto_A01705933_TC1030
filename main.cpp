@@ -2,8 +2,8 @@
  * Proyecto Mafia main
  * Mónica Isabel Casillas Rodríguez
  * A01705933
- * 02/06/2023
- * version : 2
+ * 12/06/2023
+ * version : 4
  * Este programa simula el juego de mafia en el que hay 4
  * tipos de jugadores y cada uno tiene diferentes habilidades.
 */
