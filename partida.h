@@ -256,8 +256,8 @@ int Partida:: ronda_dia(){
             cant_max = cant_max2;
         }
         cout << "El jugador que ha sido linchado es: " << candidatos[0] << endl;
+        cout << "Los jugadores aún vivos son: " << endl;
         for (int i = 0; i < num_vivos; i++){
-            cout << "Los jugadores aún vivos son: " << endl;
             if (vivos[i]->getNombre() == candidatos[0]){
                 vivos[i]->morir();
             }
