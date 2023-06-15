@@ -2,11 +2,11 @@
  * Proyecto Mafia clase Jugador
  * Mónica Isabel Casillas Rodríguez
  * A01705933
- * 12/06/2023
- * version : 4
+ * 15/06/2023
+ * version : 5
  * Esta clase define objetos de tipo jugador
  * Se incluyen las clases hererdadas
- * Civil, Doctor, Investigador, Mafia. 
+ * Civil y Mafia. 
  */
 
 #ifndef JUGADOR_H_
@@ -41,10 +41,16 @@ class Jugador{
     void despertar();
     void morir();
     void proteger();
-    string votar(string name);
     virtual void resultado(int resultado) = 0;
 };
 
+/**
+ * Constructor Jugador(string name) recibe el nombre del jugador
+ * y lo asigna al atributo nombre
+ * 
+ * @param name es el nombre del jugador
+ * @return no regresa ningún valor
+*/
 Jugador :: Jugador(string name){
     nombre = name;
     estado = 0;
@@ -84,20 +90,15 @@ void Jugador::morir(){
     estado = -1;
 }
 
+/**
+ * proteger() cambia el estado del jugador a 2 que indica
+ * que está protegido y NO lo menciona.
+ * 
+ * @param no recibe parámetros
+ * @return no regresa ningún valor
+ */
 void Jugador::proteger(){
     estado = 2;
-}
-
-/**
- * votar(string name) recibe el nombre del jugador al que se le 
- * quiere dar un voto y lo menciona
- * 
- *@param name es el nombre del jugador por el que se quiere votar
- *@return regresa el nombre del jugador al que se le dio un voto
-*/
-string Jugador::votar(string name){
-    cout << "El jugador " << nombre << " ha votado." << endl;
-    return name;
 }
 
 // Declaración de la clase Civil que hereda de Jugador
@@ -113,7 +114,7 @@ class Civil : public Jugador{
 };
 
 /**
- * ganar(int resultado) recibe el resultado del juego y menciona
+ * resultado(int resultado) recibe el resultado del juego y menciona
  *  si el jugador ganó o no
  * 
  * @param resultado es el resultado del juego
@@ -138,7 +139,7 @@ class Mafia : public Jugador{
 };
 
 /**
- * ganar(int resultado) recibe el resultado del juego y menciona
+ * resultado(int resultado) recibe el resultado del juego y menciona
  *  si el jugador ganó o no
  * 
  * @param resultado es el resultado del juego

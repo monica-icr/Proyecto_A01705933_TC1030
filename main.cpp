@@ -2,8 +2,8 @@
  * Proyecto Mafia main
  * Mónica Isabel Casillas Rodríguez
  * A01705933
- * 12/06/2023
- * version : 4
+ * 15/06/2023
+ * version : 5
  * Este programa simula el juego de mafia en el que hay 4
  * tipos de jugadores y cada uno tiene diferentes habilidades.
 */
@@ -11,10 +11,19 @@
 #include <iostream> // para imprimir
 #include <string> // para usar strings
 
-#include "Partida.h" //para usar la clase Jugador
-                    //y sus hijas Civil, Doctor, Investigador y Mafia
-
+#include "partida.h" //para usar la clase Jugador
+                    //y sus hijas Civil y Mafia
 using namespace std; // para no escribir std::
+
+/**
+ * asignar_roles() asigna los roles a los jugadores y los añade a la partida
+ * 
+ * 
+ * @param num es el número de jugadores
+ * @param part es el objeto de tipo Partida el cual es de tipo apuntador
+ * para poder realizar cambios en él
+ * @return no regresa ningún valor
+*/
 
 void asignar_roles(int num, Partida * part){
     int num_mafia = (int) num / 3;
@@ -30,7 +39,7 @@ void asignar_roles(int num, Partida * part){
     for (int i = 0; i < num_mafia; i++){
         string nombre;
         cout << "Ingresa el nombre del jugador "<< 
-        "que quieres que sea la mafia no."<< i+1 << endl;
+        "que quieres que sea la MAFIA no."<< i+1 << endl;
           getline(cin >> ws, nombre);
         for (int j = 0; j < nombre.length(); j++){
             nombre[j] = tolower(nombre[j]);
@@ -42,7 +51,7 @@ void asignar_roles(int num, Partida * part){
     for (int i = 0; i < num_doctor; i++){
         string nombre;
         cout << "Ingresa el nombre del jugador "<< 
-        "que quieres que sea el doctor no."<< i+1 << endl;
+        "que quieres que sea el DOCTOR no."<< i+1 << endl;
         getline(cin >> ws, nombre);
         for (int j = 0; j < nombre.length(); j++){
             nombre[j] = tolower(nombre[j]);
@@ -54,7 +63,7 @@ void asignar_roles(int num, Partida * part){
     for (int i = 0; i < num_investigador; i++){
         string nombre;
         cout << "Ingresa el nombre del jugador "<< 
-        "que quieres que sea el investigador no."<< i+1 << endl;
+        "que quieres que sea el INVESTIGADOR no."<< i+1 << endl;
         getline(cin >> ws, nombre);
         for (int j = 0; j < nombre.length(); j++){
             nombre[j] = tolower(nombre[j]);
@@ -66,7 +75,7 @@ void asignar_roles(int num, Partida * part){
     for (int i = 0; i < num_civil; i++){
         string nombre;
         cout << "Ingresa el nombre del jugador "<< 
-        "que quieres que sea el civil no."<< i+1 << endl;
+        "que quieres que sea el CIVIL no."<< i+1 << endl;
         getline(cin >> ws, nombre);
         for (int j = 0; j < nombre.length(); j++){
             nombre[j] = tolower(nombre[j]);
@@ -78,7 +87,14 @@ void asignar_roles(int num, Partida * part){
     part->muestra_jugadores();
 }
 
-int main(){  // función principal
+/**
+ * main() es la función principal
+ * 
+ * 
+ * @param no tiene parámetros
+ * @return regresa 0 si todo sale bien
+*/
+int main(){  
     cout << "Bienvenido al juego de mafia\n\n" << 
     "\nEsta es una guía para el DIOS"<<
     "\nTU eres el DIOS y vas a guiar esta partida.\n\n"<< endl;
@@ -92,6 +108,12 @@ int main(){  // función principal
             " para jugar una partida de mafia"<< endl;
             cout << "¿Cuántos jugadores van a jugar?" << 
             "(no te cuentes a ti mismo)"<<endl; 
+            cin >> cant_jugadores;
+        }else if (cant_jugadores > 21){
+            cout << "Hay demasiados jugadores"<<
+            " para jugar una partida de mafia"<< endl;
+            cout << "Deben haber máximo 21 jugadores"<< endl;
+            cout << "¿Cuántos jugadores van a jugar?" << endl;
             cin >> cant_jugadores;
         }else{break;}
     }

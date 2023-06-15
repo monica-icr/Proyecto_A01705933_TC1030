@@ -2,8 +2,8 @@
  * Proyecto Mafia clase Partida
  * Mónica Isabel Casillas Rodríguez
  * A01705933
- * 12/06/2023
- * version : 4
+ * 15/06/2023
+ * version : 5
  * Esta clase define objetos de tipo partida
  * 
 */
@@ -13,7 +13,7 @@
 
 #include <iostream>
 #include <string>
-#include "Jugador.h"
+#include "jugador.h"
 
 using namespace std;
 
@@ -27,23 +27,42 @@ class Partida{
     // Constructor
         Partida(){num_jugadores = 0;}
     // Métodos
-        void agregar_jugador(Jugador * jugador);
+        void agregar_jugador(Jugador * jugador);  
         void muestra_jugadores();
         void ronda_noche();
         int ronda_dia();
 };
 
+/**
+ *agregar_jugador(Jugador * jugador) agrega un jugador al arreglo de jugadores
+ * 
+ * @param jugador es un apuntador a un objeto de tipo Jugador
+ * @return no regresa ningún valor
+*/
 void Partida::agregar_jugador(Jugador * jugador){
     jugadores[num_jugadores] = jugador;
     num_jugadores++;
 }
 
+/**
+ * muestra_jugadores() muestra los nombres de los jugadores
+ * 
+ * @param no recibe ningún parámetro
+ * @return no regresa ningún valor
+*/
 void Partida::muestra_jugadores(){
     cout <<"Los jugadores son:"<< endl;
     for (int i = 0; i < num_jugadores; i++){
         cout << jugadores[i]->getNombre() << endl;
     }
 }
+
+/**
+ * ronda_noche() ejecuta la ronda de noche
+ * 
+ * @param no recibe ningún parámetro
+ * @return no regresa ningún valor
+*/
 
 void Partida::ronda_noche(){
     cout << "La ronda de noche ha iniciado" << endl;
@@ -79,6 +98,50 @@ void Partida::ronda_noche(){
         " ¿A quién quieren matar?" << endl;
         string victima; 
         getline(cin >> ws, victima);
+        for (int i = 0; i < victima.length(); i++){
+            victima[i] = tolower(victima[i]);
+        }
+        bool loop = true;
+        bool loop2 = true;
+        int match = 0;
+        while(loop){
+            while(loop2){
+                match = 0;
+                for (int i = 0; i < num_vivos; i++){
+                    if (vivos[i]->getNombre() == victima){
+                        loop2 = false;
+                        match++ ;
+                    } 
+                }
+                if (match == 0){
+                    cout << "ALERTA: Ese jugador no existe, por favor" <<
+                    " ingrese otro nombre" << endl;
+                    getline(cin >> ws, victima);
+                    for (int i = 0; i < victima.length(); i++){
+                        victima[i] = tolower(victima[i]);
+                    }
+                }
+            }
+            match = 0;
+            for (int i = 0; i < num_vivos; i++){
+                if (vivos[i]->getNombre() == victima){
+                    if (vivos[i]-> getRol() != "mafia"){
+                        loop = false;
+                        match ++;
+                    }
+                }
+            }
+            if (match == 0){
+                cout << "ALERTA: No puedes matar a un mafioso" << endl;
+                cout << "Pregunta, sin que hablen" <<
+                " ¿A quién quieren matar?" << endl;
+                getline(cin >> ws, victima);
+                for (int i = 0; i < victima.length(); i++){
+                    victima[i] = tolower(victima[i]);
+                }
+            }
+            loop2 = true;
+        }
         cout << "La mafia ha escogido a quién matar" << endl;
         for (int i = 0; i < victima.length(); i++){
             victima[i] = tolower(victima[i]);
@@ -106,6 +169,24 @@ void Partida::ronda_noche(){
                     for (int k = 0; k < salvado.length(); k++){
                         salvado[i] = tolower(salvado[i]);
                     }
+                    bool loop = true;
+                    while (loop){
+                        int match = 0;
+                        for (int j = 0; j < num_vivos; j++){
+                            if (vivos[j]->getNombre() == salvado){
+                                loop = false;
+                                match++;
+                            }
+                        }
+                        if (match == 0){
+                            cout << "ALERTA: Ese jugador no existe"<< 
+                            ", por favor ingrese otro nombre" << endl;
+                            getline(cin >> ws, salvado);
+                            for (int k = 0; k < salvado.length(); k++){
+                                salvado[i] = tolower(salvado[i]);
+                            }
+                        }
+                    }
                     for (int l = 0; l < num_vivos; l++){
                         if (vivos[l]->getNombre() == salvado){
                             vivos[l]->proteger();
@@ -131,6 +212,24 @@ void Partida::ronda_noche(){
                     for (int k = 0; k < investigado.length(); k++){
                         investigado[i] = tolower(investigado[i]);
                     }
+                    bool loop = true;
+                    while(loop){
+                        int match = 0;
+                        for (int j = 0; j < num_vivos; j++){
+                            if (vivos[j]->getNombre() == investigado){
+                                loop = false;
+                                match++;
+                            }
+                        }
+                        if (match == 0){
+                            cout <<"ALERTA: Ese jugador no existe" <<
+                            " , por favor ingrese otro nombre" << endl;
+                            getline(cin >> ws, investigado);
+                            for (int k = 0; k < investigado.length(); k++){
+                                investigado[i] = tolower(investigado[i]);
+                            }
+                        }
+                    }
                     for (int l = 0; l < num_vivos; l++){
                         if (vivos[l]->getNombre() == investigado){
                             int bando = vivos[l]->getBando();
@@ -155,10 +254,16 @@ void Partida::ronda_noche(){
             if ((vivos[i])->getEstado() != -1){
                 vivos[i]->despertar();
             }
-        }        
+        }       
     }
 }
 
+/**
+ * ronda_dia() es la función que se encarga de realizar la ronda de día
+ * 
+ * @param no recibe ningún parámetro
+ * @return 0 si la partida no ha terminado, 1 si la partida ha terminado
+*/
 int Partida:: ronda_dia(){
     cout << "La noche pasó y los sobrevientes son:" << endl;
     Jugador * vivos[20];
@@ -197,6 +302,24 @@ int Partida:: ronda_dia(){
             for (int k = 0; k < votado.length(); k++){
                 votado[i] = tolower(votado[i]);
             }
+            bool loop = true;
+            while(loop){
+                int match = 0;
+                for (int j = 0; j < num_vivos; j++){
+                    if (vivos[j]->getNombre() == votado){
+                        loop = false;
+                        match++;
+                    }
+                }
+                if (match == 0){
+                    cout << "Ese jugador no existe, por favor" <<
+                    " ingrese otro nombre" << endl;
+                    getline(cin >> ws, votado);
+                    for (int k = 0; k < votado.length(); k++){
+                        votado[i] = tolower(votado[i]);
+                    }
+                }
+            }
             for (int l = 0; l < num_vivos; l++){
                 if (vivos[l]->getNombre() == votado){
                     votos[l]++;
@@ -231,6 +354,21 @@ int Partida:: ronda_dia(){
                 vivos[i]->getNombre()<< "?" << endl;
                 string votado;
                 getline(cin >> ws, votado);
+                bool loop = true;
+                while (loop){
+                    int match = 0;
+                    for (int j = 0; j < cant_max; j++){
+                        if (candidatos[j] == votado){
+                            loop = false;
+                            match++;
+                        }
+                    }
+                    if (match == 0){
+                        cout << "ALERTA: Ese jugador no esta en la votacion"<<
+                        ", por favor ingrese otro nombre" << endl;
+                        getline(cin >> ws, votado);
+                    }
+                }
                 for (int k = 0; k < votado.length(); k++){
                     votado[k] = tolower(votado[k]);
                 }
@@ -255,9 +393,9 @@ int Partida:: ronda_dia(){
             }
             cant_max = cant_max2;
         }
-        cout << "El jugador que ha sido linchado es: " << candidatos[0] << endl;
-        cout << "Los jugadores aún vivos son: " << endl;
+        cout << "El jugador que ha sido linchado es: " << candidatos[0] <<endl;
         for (int i = 0; i < num_vivos; i++){
+            cout << "Los jugadores aún vivos son: " << endl;
             if (vivos[i]->getNombre() == candidatos[0]){
                 vivos[i]->morir();
             }
