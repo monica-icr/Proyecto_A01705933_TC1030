@@ -25,6 +25,7 @@ correr en linux: "/a.out"
 
 ### Fallas (consideraciones para el usuario) 
 El programa falla si el usuario ingresa un valor string cuando se le pide un valor int. 
+
 Es importante que usuario no ingrese el mismo nombre para distintos jugadores ya que el juego no va a funcionar de la manera en la que se busca. 
 
 ### Correcciones
