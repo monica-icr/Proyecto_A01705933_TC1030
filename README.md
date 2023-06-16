@@ -18,7 +18,7 @@ El programa necesita que los archivos se encuentren en la misma carpeta.
 
 El programa corre en consola, y esta programado en c++ estándar con la biblioteca iostream y string por lo que corre en cualquier sistema operativo.
 
-Para compilar buscar la ruta donde se encuentre la carpeta con los archivos y escribi "g++ main.cpp"
+Para compilar buscar la ruta donde se encuentre la carpeta con los archivos y escribe "g++ main.cpp"
 
 correr en windows: "a.exe"
 correr en linux: "/a.out"
@@ -26,7 +26,7 @@ correr en linux: "/a.out"
 ### Fallas (consideraciones para el usuario) 
 El programa falla si el usuario ingresa un valor string cuando se le pide un valor int. 
 
-Es importante que usuario no ingrese el mismo nombre para distintos jugadores ya que el juego no va a funcionar de la manera en la que se busca. 
+Es importante que usuario no ingrese el mismo nombre para distintos jugadores ya que el juego no va a funcionar de la manera en la que se busca. También como recomendación, eviten los espacios después de los nombres ingresados. 
 
 ### Correcciones
 
