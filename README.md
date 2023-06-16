@@ -31,5 +31,5 @@ Es importante que usuario no ingrese el mismo nombre para distintos jugadores ya
 ### Correcciones
 
 No hay correcciones que mencionar ya que todas las subcompetencias evaluadas en las entregas previas fueron acreditadas. 
-Lo único que se puede mencionar es que en la segunda retroalimentación se pide que se separen las clases en distintos archivos. Sin embargo, este archivo resulto no ser tan largo (jugador.h), por lo que no es necesario hacerlo. 
+Lo único que se puede mencionar es que en la segunda retroalimentación se pide que se separen las clases en distintos archivos. Sin embargo, este archivo resulto no ser tan largo (jugador.h), por lo que no fue necesario hacerlo. 
 
